@@ -32,5 +32,11 @@ export default defineNuxtConfig({
     '@/components/base/index.scss'
   ],
 
+  runtimeConfig: {
+    public: {
+      API_BASE: 'https://jsonplaceholder.typicode.com'
+    },
+  },
+
   compatibilityDate: '2024-04-03',
 })

@@ -5,14 +5,14 @@
 
         <div class="block">
             <h2>- Типографика -</h2>
-            <p>mode: jilfond-typogaphy</p>
-            <BaseTypography class="--mb" tag="h5" type="title-16" mode="jilfond-typogaphy">
+            <p>mode: jilfond-typography</p>
+            <BaseTypography class="--mb" tag="h5" type="title-16" mode="jilfond-typography">
                 Заголовок
             </BaseTypography>
-            <BaseTypography tag="p" type="text-14-400" mode="jilfond-typogaphy">
+            <BaseTypography tag="p" type="text-14-400" mode="jilfond-typography">
                 Обычный текст
             </BaseTypography>
-            <BaseTypography tag="p" type="text-14-600" mode="jilfond-typogaphy">
+            <BaseTypography tag="p" type="text-14-600" mode="jilfond-typography">
                 Жирный текст
             </BaseTypography>
         </div>
@@ -21,7 +21,7 @@
             <h2>- Forms -</h2>
             <p>form-input</p>
             <BaseFormInput class="--mb" type="string" v-model="testValueInput" />
-            <BaseTypography tag="h5" type="title-16" mode="jilfond-typogaphy">
+            <BaseTypography tag="h5" type="title-16" mode="jilfond-typography">
                 {{testValueInput}}
             </BaseTypography>
         </div>

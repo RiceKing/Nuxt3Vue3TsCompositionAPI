@@ -1,4 +1,4 @@
-.jilfond-typogaphy {
+.typography {
     &.title-16 {
         font-size: 16px;
         font-weight: 600;
@@ -16,5 +16,13 @@
         font-weight: 600;
         line-height: 17.07px;
         color: #333333;
+    }
+}
+
+.typography {
+    &.--ellipsis {
+        white-space: nowrap; 
+        overflow: hidden; 
+        text-overflow: ellipsis; 
     }
 }

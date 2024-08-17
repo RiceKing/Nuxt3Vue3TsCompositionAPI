@@ -22,6 +22,7 @@
     flex-basis: 293px;
     border-right: 1px solid #DEDEDD;
     padding: 27px 20px;
+    max-width: 293px;
 }
 
 .main {

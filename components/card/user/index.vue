@@ -1,17 +1,17 @@
 <template>
-    <div class="card-user" v-if="item">
+    <button @click="onClick" class="card-user" v-if="item">
         <div class="avatar">
             <BaseImage :src="item.avatar" :alt="item.name"/>
         </div>
         <div class="info">
-            <BaseTypography class="--m0" tag="p" type="text-14-500" mode="jilfond-typogaphy">
+            <BaseTypography class="--m0 info__text --ellipsis" tag="p" type="text-14-500" mode="jilfond-typography">
                 {{item.username}}
             </BaseTypography>
-            <BaseTypography class="--m0" tag="p" type="text-14-400" mode="jilfond-typogaphy">
+            <BaseTypography class="--m0 info__text --ellipsis" tag="p" type="text-14-400" mode="jilfond-typography">
                 {{item.email}}
             </BaseTypography>
         </div>
-    </div>
+    </button>
 </template>
 
 <script lang="ts" setup>
@@ -24,6 +24,12 @@ interface Props {
 const props = withDefaults(defineProps<Props>(), {
     item: undefined,
 })
+
+const emit = defineEmits()
+
+const onClick = () => {
+    emit('onClick', props.item)
+}
 </script>
 
 <style lang="scss" scoped>
@@ -32,7 +38,10 @@ const props = withDefaults(defineProps<Props>(), {
     box-shadow: 0px 0px 10px 0px #0000001A;
     border-radius: 10px;
     border: 1px solid transparent;
-
+    background-color: #FFF;
+    cursor: pointer;
+    padding: 0;
+        
     &.--active, &:hover {
         border: 1px solid #E0E0E0;
     }
@@ -64,5 +73,11 @@ const props = withDefaults(defineProps<Props>(), {
     gap: 5px;
     padding: 15px;
     width: 100%;
+    align-items: flex-start;
+
+    &__text {
+        width: 135px;
+        text-align: left;
+    }
 }
 </style>
