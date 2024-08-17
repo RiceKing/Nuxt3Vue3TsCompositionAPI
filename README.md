@@ -19,5 +19,5 @@ npm run build
 npm run preview
 ```
 
-# стайлгайд css
+# StyleGuide
 Модификатор классов через двойное тире: .container.--main
