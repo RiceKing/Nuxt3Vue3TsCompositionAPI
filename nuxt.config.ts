@@ -28,7 +28,8 @@ export default defineNuxtConfig({
 
   css: [
     '@/assets/styles/normalize.css',
-    '@/assets/styles/main.scss'
+    '@/assets/styles/main.scss',
+    '@/components/base/index.scss'
   ],
 
   compatibilityDate: '2024-04-03',
