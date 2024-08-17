@@ -1,7 +1,7 @@
 <template>
     <div class="wrapper">        
         <ComponentHeaderJilfond class="container" />
-        <main class="container">
+        <main class="container --main">
             <slot />
         </main>
     </div>
@@ -18,5 +18,10 @@
 .container {
     max-width: 1266px; 
     width: 100%;
+
+    &.--main {
+        flex: 1;
+        margin-bottom: 44px;
+    }
 }
 </style>

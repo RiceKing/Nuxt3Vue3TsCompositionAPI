@@ -1,0 +1,31 @@
+.form-input {
+    width: 100%;
+    display: block;
+    height: fit-content;
+  
+    border: 1.5px solid #E9ECEF;
+    background: #ffffff;
+    color: #76787D;
+    border-radius: 8px;
+    padding: 16px 24px;
+
+    &::placeholder {
+        color: #c1c3ca;
+    }
+
+    &:hover {
+        border-color: #E9ECEF;
+    }
+
+    &:focus {
+        border-color: #E9ECEF;
+    }
+
+    &:invalid {
+        border-color: #E31F24;
+    }
+
+    &.--error {
+        border-color: #E31F24;
+    }
+}
