@@ -15,7 +15,7 @@ import MainBlock from "@/components/sections/jilfond/main/index.vue";
 // import { useUserList } from "@/composables/api/useUsers.js";
 import type { User } from "@/types/user";
 
-definePageMeta({ layout: 'jilfond' });
+definePageMeta({ layout: 'jilfond', ssr: false });
 
 const route = useRoute()
 const config = useRuntimeConfig();
@@ -30,24 +30,24 @@ const showUserCard = computed(() => {
 })
 
 const getUsersList = async () => {
-  try {
-    isLoading.value = true
+    try {
+        isLoading.value = true
 
-    usersList.value = await $fetch('/users', {
-      baseURL: config.public.API_BASE,
-      query: {
-        id: route?.query?.id || route?.query?.show || undefined,
-        name: route?.query?.name || undefined
-      }
-    });
+        usersList.value = await $fetch('/users', {
+            baseURL: config.public.API_BASE,
+            query: {
+                id: route?.query?.id || route?.query?.show || undefined,
+                name: route?.query?.name || undefined
+            }
+        });
 
-    isLoading.value = false
+        isLoading.value = false
 
-  } catch (error) {
-    console.error('Error fetching data:', error);
-    usersList.value = []; 
-    isLoading.value = false
-  }
+    } catch (error) {
+        console.error('Error fetching data:', error);
+        usersList.value = []; 
+        isLoading.value = false
+    }
 }
 
 watch(() => route.query, (newValue, oldValue) => {
