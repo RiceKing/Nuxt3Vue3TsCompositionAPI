@@ -11,6 +11,7 @@
 <script lang="ts" setup>
 import Aside from "@/components/sections/jilfond/aside/index.vue";
 import MainBlock from "@/components/sections/jilfond/main/index.vue";
+import { useStore } from 'vuex';
 
 // import { useUserList } from "@/composables/api/useUsers.js";
 import type { User } from "@/types/user";
@@ -19,43 +20,39 @@ definePageMeta({ layout: 'jilfond', ssr: false });
 
 const route = useRoute()
 const config = useRuntimeConfig();
+const store = useStore();
 
-const usersList = ref<Array<User>>([]);
-const isLoading = ref<boolean>(false)
+const usersList = computed((): Array<User> => store.state.usersList);
+const isLoading = computed((): boolean => store.state.isLoading);
 
-const showUserCard = computed(() => {
-    if(usersList.value.length === 1) return usersList.value[0]
-    if(!route?.query?.show && !usersList.value?.length) return undefined
-    return usersList.value.find(user => user.id === Number(route?.query?.show))
-})
+const showUserCard = computed((): User | undefined => {
+    if (usersList.value.length === 1) return usersList.value[0];
+    if (!route?.query?.show && !usersList.value?.length) return undefined;
+    return usersList.value.find(user => user.id === Number(route?.query?.show));
+});
 
-const getUsersList = async () => {
-    try {
-        isLoading.value = true
+const getUsersList = () => {
+  const query = {
+    id: route?.query?.id || route?.query?.show || undefined,
+    name: route?.query?.name || undefined,
+  };
+  store.dispatch('fetchUsersList', query);
+};
 
-        usersList.value = await $fetch('/users', {
-            baseURL: config.public.API_BASE,
-            query: {
-                id: route?.query?.id || route?.query?.show || undefined,
-                name: route?.query?.name || undefined
-            }
-        });
+onMounted(() => {
+  getUsersList(); 
+});
 
-        isLoading.value = false
-
-    } catch (error) {
-        console.error('Error fetching data:', error);
-        usersList.value = []; 
-        isLoading.value = false
-    }
-}
-
-watch(() => route.query, (newValue, oldValue) => {
-    if((newValue?.id?.length || newValue?.name?.length) && !newValue?.show) getUsersList()
-    else if(!newValue?.show) usersList.value = []
-
-    if(!newValue?.id?.length && !newValue?.name?.length) usersList.value = []
-})
+watch(() => route.query, (newValue) => {
+  if ((newValue?.id?.length || newValue?.name?.length) && !newValue?.show) {
+    getUsersList();
+  } else if (!newValue?.show) {
+    store.commit('clearUsersList');
+  }
+  if (!newValue?.id?.length && !newValue?.name?.length) {
+    store.commit('clearUsersList');
+  }
+});
 
 // const usersList: Array<User> = [{id: 1, username: 'username1', name: 'username2', email: 'email1', avatar: 'https://avatars.githubusercontent.com/u/12288165?v=4'}, {id: 2, username: 'username2', name: 'name2', email: 'email2'}]
 </script>
