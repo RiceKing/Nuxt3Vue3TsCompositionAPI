@@ -1,7 +1,7 @@
 <template>
     <div>
         <Header class="--mb" />
-        <ListUserCards :list="list"/>
+        <ListUserCards :isLoading="isLoading" :list="list"/>
     </div>
 </template>
 
@@ -10,7 +10,8 @@ import Header from "@/components/sections/jilfond/aside/components/Header/index.
 import ListUserCards from "@/components/sections/jilfond/aside/components/ListUserCards/index.vue"
 import type { User } from "~/types/user";
 
-const props = withDefaults(defineProps<{list?: Array<User>}>(), { 
-    list: () => []
+const props = withDefaults(defineProps<{list?: Array<User>, isLoading: boolean}>(), { 
+    list: () => [],
+    isLoading: false
 })
 </script>

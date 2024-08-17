@@ -18,25 +18,31 @@ import type { User } from "~/types/user";
 
 const route = useRoute()
 const router = useRouter()
-const props = withDefaults(defineProps<{list?: Array<User>, title?: string; }>(), { 
+const props = withDefaults(defineProps<{list?: Array<User>, title?: string; isLoading: boolean}>(), { 
     list: () => [],
-    title: 'Список пользователй'
+    title: 'Список пользователй',
+    isLoading: false
 })
 
 const isActiveId = ref<number | undefined>(undefined)
 
 const listEmptyMessage = computed(() => {
+    if(props.isLoading) return 'Загрузка...'
     return route?.query?.id || route?.query?.username ? 'Ничего не найдено' : 'Начните поиск'
 })
 
 const updateQuerySelectId = () => {
-  router.push({ query: { id: isActiveId.value } });
+  router.push({ query: { ...route.query, show: isActiveId.value } });
 };
 
 const selectCard = (item: User) => {
     isActiveId.value = item.id,
     updateQuerySelectId()
 }
+
+watch(() => props.list, () => {
+    isActiveId.value = undefined;
+})
 </script>
 
 <style lang="scss" setup>

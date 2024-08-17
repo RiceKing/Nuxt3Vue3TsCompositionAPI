@@ -15,11 +15,19 @@ const props = defineProps({
 
 const router = useRouter();
 
-const updateQuery = () => {
-  router.push({ query: { id: searchValue.value } });
+const updateQuery = (ids: Array<number>, usersName: Array<string>) => {
+  router.push({ query: { id: ids, name: usersName} });
+};
+
+const isNumber = (value: any): boolean => {
+    return typeof value === 'number' && !isNaN(value);
 };
 
 watch(searchValue, (newValue) => {
-    updateQuery()
+    const splitValues = newValue.split(',')
+    const ids = splitValues.map((val) => Number(val.trim()) ).filter((val) => isNumber(val) && val !== 0)
+    const usersName = splitValues.filter((val) => !isNumber(Number(val.trim())))
+
+    updateQuery(ids, usersName)
 })
 </script>
