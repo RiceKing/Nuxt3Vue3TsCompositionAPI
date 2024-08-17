@@ -40,8 +40,12 @@ const getUsersList = () => {
 };
 
 onMounted(() => {
-  getUsersList(); 
+    if(route.query?.id?.length || route.query?.name?.length || route.query?.show?.length) getUsersList();
 });
+
+onUnmounted(() => {
+    store.commit('clearUsersList');
+})
 
 watch(() => route.query, (newValue) => {
   if ((newValue?.id?.length || newValue?.name?.length) && !newValue?.show) {

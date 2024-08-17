@@ -37,7 +37,7 @@
                     <BaseImage src="" />
                 </div>
             </div>
-           
+
         </div>
     </div>
 </template>
