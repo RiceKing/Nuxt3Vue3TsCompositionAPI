@@ -8,20 +8,25 @@
 </template>
 
 <script lang="ts" setup>
+import { useStore } from "vuex";
+import type { User } from "@/types/user";
 const searchValue = ref<string>('')
 const props = defineProps({
     title: {default: 'Поиск сотрудников', type: String}
 })
 
 const router = useRouter();
+const store = useStore();
+
+const usersList = computed((): string => store.state.usersList.map((item: User) => item.id).join(", ") || '');
 
 const updateQuery = (ids: Array<number>, usersName: Array<string>) => {
   router.push({ query: { id: ids, name: usersName} });
 };
-
 const isNumber = (value: any): boolean => {
     return typeof value === 'number' && !isNaN(value);
 };
+
 
 watch(searchValue, (newValue) => {
     const splitValues = newValue.split(',')
@@ -29,5 +34,10 @@ watch(searchValue, (newValue) => {
     const usersName = splitValues.filter((val) => !isNumber(Number(val.trim())))
 
     updateQuery(ids, usersName)
+})
+
+watch(usersList, (newValue) => {
+    console.log(usersList, newValue)
+    if(newValue?.length && !searchValue.value) searchValue.value = newValue 
 })
 </script>

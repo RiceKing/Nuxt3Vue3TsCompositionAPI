@@ -11,7 +11,7 @@
 <script lang="ts" setup>
 import Aside from "@/components/sections/jilfond/aside/index.vue";
 import MainBlock from "@/components/sections/jilfond/main/index.vue";
-import { useStore } from 'vuex';
+import { useStore } from "vuex";
 
 // import { useUserList } from "@/composables/api/useUsers.js";
 import type { User } from "@/types/user";
