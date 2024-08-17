@@ -6,8 +6,6 @@
 
 
 <style lang="scss" scoped>
-.profile {}
-
 .profile-name {
     font-size: 16px;
     font-weight: 400;
