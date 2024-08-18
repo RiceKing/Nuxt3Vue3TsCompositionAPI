@@ -12,7 +12,7 @@
 import Aside from "@/components/sections/jilfond/aside/index.vue";
 import MainBlock from "@/components/sections/jilfond/main/index.vue";
 
-// import { useUserList } from "@/composables/api/useUsers.js";
+import { fetchUsersList } from "@/composables/api/useUsers.js";
 import type { User } from "@/types/user";
 
 definePageMeta({ layout: 'jilfond', ssr: false });
@@ -29,26 +29,20 @@ const showUserCard = computed(() => {
     return usersList.value.find(user => user.id === Number(route?.query?.show))
 })
 
-const getUsersList = async () => {
-    try {
-        isLoading.value = true
 
-        usersList.value = await $fetch('/users', {
-            baseURL: config.public.API_BASE,
-            query: {
-                id: route?.query?.id || route?.query?.show || undefined,
-                name: route?.query?.name || undefined
-            }
-        });
 
-        isLoading.value = false
+const getUsersList = () => {
+    const query = {
+        id: route?.query?.id || route?.query?.show || undefined,
+        name: route?.query?.name || undefined,
+    };
 
-    } catch (error) {
-        console.error('Error fetching data:', error);
-        usersList.value = []; 
-        isLoading.value = false
-    }
-}
+    (async function () {
+        usersList.value = await fetchUsersList(query)
+    })();
+} 
+
+
 
 watch(() => route.query, (newValue, oldValue) => {
     if((newValue?.id?.length || newValue?.name?.length) && !newValue?.show) getUsersList()
