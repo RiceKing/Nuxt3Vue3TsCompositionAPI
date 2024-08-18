@@ -26,7 +26,6 @@ const usersList = computed((): Array<User> => store.state.usersList);
 const isLoading = computed((): boolean => store.state.isLoading);
 
 const showUserCard = computed((): User | undefined => {
-    if (usersList.value.length === 1) return usersList.value[0];
     if (!route?.query?.show && !usersList.value?.length) return undefined;
     return usersList.value.find(user => user.id === Number(route?.query?.show));
 });

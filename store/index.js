@@ -32,6 +32,9 @@ const store = createStore({
                 commit('setLoading', false);
             }
         },
+        setLoading({ commit }, loading) {
+            commit('setLoading', loading);
+        },
     },
 });
 
