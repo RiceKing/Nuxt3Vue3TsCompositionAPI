@@ -21,6 +21,7 @@ const { query } = useRoute()
 const route = useRoute() 
 
 provide("usersList", usersList);
+provide("isLoading", isLoading)
 
 onMounted(() => {
     if(query?.id?.length || query?.name?.length || query?.show?.length) getUsersList();

@@ -13,15 +13,25 @@ import { debounce } from "@/utils/debounce"
 
 
 const searchValue = ref<string>('')
+const isLoading = inject("isLoading") as Ref<boolean>
 
 const updateValue = (value: string) => {
     searchValue.value = value;
 };
 
-const handleInput = debounce((event: Event) => {
-  const target = event.target as HTMLInputElement;
-  updateValue(target.value);
-}, 300); 
+const debouncedUpdateValue = debounce((value: string) => {
+    updateValue(value);
+}, 300);
+
+
+const handleInput = (event: Event) => {
+    const target = event.target as HTMLInputElement;
+
+    if(target.value?.length) {
+        isLoading.value = true
+        debouncedUpdateValue(target.value)
+    }
+}
 
 const props = defineProps({
     title: {default: 'Поиск сотрудников', type: String}
@@ -38,6 +48,10 @@ const updateQuery = (ids: Array<number>, usersName: Array<string>) => {
 const isNumber = (value: any): boolean => {
     return typeof value === 'number' && !isNaN(value);
 };
+
+onMounted(() => {
+    isLoading.value = false
+})
 
 watch(searchValue, (newValue) => {
     const splitValues = newValue.split(',')

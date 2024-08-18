@@ -20,7 +20,7 @@ const route = useRoute()
 const router = useRouter()
 const props = withDefaults(defineProps<{list?: Array<User>, title?: string; isLoading: boolean}>(), { 
     list: () => [],
-    title: 'Список пользователй',
+    title: 'Результаты',
     isLoading: false
 })
 
