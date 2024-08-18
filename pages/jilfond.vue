@@ -12,17 +12,28 @@
 import Aside from "@/components/sections/jilfond/aside/index.vue";
 import MainBlock from "@/components/sections/jilfond/main/index.vue";
 
-import { getUsersList, showUserCard, refsList } from "@/composables/api/useUsers";
+import { getUsersList, showUserCard, refsList, clearUsersList } from "@/composables/api/useUsers";
 
 definePageMeta({ layout: 'jilfond', ssr: false });
 
 const { usersList, isLoading } = refsList()
-const route = useRoute()
+const { query } = useRoute()
+const route = useRoute() 
+
+provide("usersList", usersList);
+
+onMounted(() => {
+    if(query?.id?.length || query?.name?.length || query?.show?.length) getUsersList();
+});
+
+onUnmounted(() => {
+    clearUsersList()
+})
 
 watch(() => route.query, (newValue) => {
     if((newValue?.id?.length || newValue?.name?.length) && !newValue?.show) getUsersList()
-    else if(!newValue?.show) usersList.value = []
+    else if(!newValue?.show) clearUsersList()
 
-    if(!newValue?.id?.length && !newValue?.name?.length) usersList.value = []
+    if(!newValue?.id?.length && !newValue?.name?.length) clearUsersList()
 })
 </script>

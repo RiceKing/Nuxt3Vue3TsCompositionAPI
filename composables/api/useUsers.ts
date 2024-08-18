@@ -30,7 +30,11 @@ export const getUsersList = () => {
 
 export const showUserCard = computed(() => {
     const route = useRoute();
-    
+
     if(!route?.query?.show && !usersList.value?.length) return undefined
     return usersList.value.find((user: User) => user.id === Number(route?.query?.show))
 })
+
+export const clearUsersList = () => {
+    usersList.value = []
+}

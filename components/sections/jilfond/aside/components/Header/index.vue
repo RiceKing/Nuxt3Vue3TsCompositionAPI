@@ -8,12 +8,15 @@
 </template>
 
 <script lang="ts" setup>
+import type { User } from "@/types/user"
 const searchValue = ref<string>('')
 const props = defineProps({
     title: {default: 'Поиск сотрудников', type: String}
 })
 
 const router = useRouter();
+const usersList = inject("usersList") as Ref<Array<User>>;
+const printUserList = computed((): string => usersList.value.map((item: User) => item.id).join(", ") || '');
 
 const updateQuery = (ids: Array<number>, usersName: Array<string>) => {
   router.push({ query: { id: ids, name: usersName} });
@@ -29,5 +32,9 @@ watch(searchValue, (newValue) => {
     const usersName = splitValues.filter((val) => !isNumber(Number(val.trim())))
 
     updateQuery(ids, usersName)
+})
+
+watch(printUserList, (newValue) => {
+    if(newValue?.length && !searchValue.value) searchValue.value = newValue 
 })
 </script>
