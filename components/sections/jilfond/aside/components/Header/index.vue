@@ -3,13 +3,26 @@
         <BaseTypography class="--mb" tag="h5" type="title-16" mode="jilfond-typography">
             {{props.title}}
         </BaseTypography>
-        <BaseFormInput type="text" v-model="searchValue" placeholder="Введите Id или имя"/>
+        <BaseFormInput type="text" @input="handleInput" placeholder="Введите Id или имя"/>
     </div>
 </template>
 
 <script lang="ts" setup>
 import type { User } from "@/types/user"
+import { debounce } from "@/utils/debounce"
+
+
 const searchValue = ref<string>('')
+
+const updateValue = (value: string) => {
+    searchValue.value = value;
+};
+
+const handleInput = debounce((event: Event) => {
+  const target = event.target as HTMLInputElement;
+  updateValue(target.value);
+}, 300); 
+
 const props = defineProps({
     title: {default: 'Поиск сотрудников', type: String}
 })

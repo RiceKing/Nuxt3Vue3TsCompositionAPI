@@ -1,7 +1,7 @@
 import { fetchUsersList } from "../useFetch/fetchUsersList";
 import type { User } from "@/types/user";
 
-const isLoading = ref<boolean>(false);
+const isLoading = ref<boolean>(true);
 const usersList = ref<Array<User>>([]);
 
 export const refsList = () => {
