@@ -4,12 +4,12 @@
             <BaseImage :src="item.avatar" :alt="item.name"/>
         </div>
         <div class="info">
-            <BaseTypography class="--m0 info__text --ellipsis" tag="p" type="text-14-500" mode="jilfond-typography">
+            <BaseText class="--m0 info__text --ellipsis" tag="p" type="text-14-500" >
                 {{item.username}}
-            </BaseTypography>
-            <BaseTypography class="--m0 info__text --ellipsis" tag="p" type="text-14-400" mode="jilfond-typography">
+            </BaseText>
+            <BaseText class="--m0 info__text --ellipsis" tag="p" type="text-14-400" >
                 {{item.email}}
-            </BaseTypography>
+            </BaseText>
         </div>
     </button>
 </template>

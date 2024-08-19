@@ -25,5 +25,6 @@ const onSelect = () => {
     border: 2px solid black;
     padding: 10px;
     background: pink;
+    cursor: pointer;
 }
 </style>

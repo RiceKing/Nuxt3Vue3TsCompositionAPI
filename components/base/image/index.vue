@@ -8,7 +8,7 @@
 <script lang="ts" setup>
 defineOptions({
     name: 'Image',
-    inheritAttrs: false,
+    inheritAttrs: false
 })
 
 const props = defineProps<{
@@ -17,24 +17,3 @@ const props = defineProps<{
 
 const src = props.src || undefined
 </script>
-
-<style lang="scss" scoped>
-.image-wrap {
-    width: 100%;
-    height: 100%;
-
-    &.--empty {    
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-}
-
-.image__empty {
-    max-width: 50%;
-}
-
-.image {
-    max-width: 100%;
-}
-</style>

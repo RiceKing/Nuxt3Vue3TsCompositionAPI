@@ -1,6 +1,6 @@
 <template>
     <div class="selected-items box">
-        <div class="list">
+        <div class="list" :class="{'--one': !counterTextPrint}">
             <div class="item" v-for="(item) in selectedItems" :key="item.id" v-text="item.name" />
         </div>
       
@@ -37,11 +37,33 @@ const counterTextPrint = computed(() => {
     display: flex;
     gap: 20px;
     flex-wrap: wrap;
+    min-height: 110px;
 }
 
 .box, .item {
     border: 2px solid black;
     padding: 10px;
-    white-space: nowrap;
+}
+
+.item {
+    max-width: 110px;
+    height: min-content;
+
+    text-align: center;
+    white-space: nowrap; 
+    overflow: hidden; 
+    text-overflow: ellipsis; 
+
+    @at-root .list.--one & {
+        display: grid; 
+        place-items: center; 
+
+        width: 100%;
+        height: 100%;
+        max-width: 100%;
+        padding: 0;
+        border: 0 none; 
+    }
+
 }
 </style>

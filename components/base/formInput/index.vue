@@ -2,20 +2,37 @@
     <input
         :class="[
             'form-input',
-            { '--error': props.error },
+            { '--error': error },
         ]"
         v-bind="$attrs"
-        :value="props.modelValue"
-        @input="$emit('update:modelValue', $event.target.value)"
+        :value="modelValue"
+        @input="handleInput"
         :placeholder="placeholder"
     />
 </template>
-<script setup>
-const props = defineProps({
-    modelValue: { default: "", type: String },
-    placeholder: { default: "Введите", type: String},
-    error: { default: false, type: Boolean },
-});
+<script lang="ts" setup>
+interface Props {
+    modelValue?: string,
+    placeholder?: string,
+    error?: boolean
+}
+
+interface Emit {
+    (e: 'update:modelValue', value: string): void
+}
+
+const props = withDefaults(defineProps<Props>(), {
+    modelValue: "",
+    placeholder: "Введите",
+    error: false
+})
+
+const emit = defineEmits<Emit>()
+
+const handleInput = (event: Event) => {
+    const target = event.target as HTMLInputElement; 
+    if (target) emit('update:modelValue', target.value)
+};
 </script>
 
 <style lang="scss" scoped>

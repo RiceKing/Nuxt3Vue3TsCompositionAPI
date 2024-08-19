@@ -1,8 +1,8 @@
 <template>
     <div class="aside__header">
-        <BaseTypography class="--mb" tag="h5" type="title-16" mode="jilfond-typography">
+        <BaseText class="--mb" tag="h5" type="title-16" mode="jilfond-typography">
             {{props.title}}
-        </BaseTypography>
+        </BaseText>
         <BaseFormInput type="text" @input="handleInput" placeholder="Введите Id или имя"/>
     </div>
 </template>

@@ -4,34 +4,34 @@
             <BaseImage :src="item.avatar" :alt="item.name"/>
         </div>
         <div class="info">
-            <BaseTypography class="--m0" tag="h5" type="title-16" mode="jilfond-typography">
+            <BaseText class="--m0" tag="h5" type="title-16">
                 {{item.name}}
-            </BaseTypography>
+            </BaseText>
 
             <div class="info__subject" v-if="item.email">
-                <BaseTypography class="--m0" tag="p" type="text-14-600" mode="jilfond-typography">
+                <BaseText class="--m0" tag="p" type="text-14-600">
                     email:
-                </BaseTypography>
-                <BaseTypography class="--m0" tag="p" type="text-14-400" mode="jilfond-typography">
+                </BaseText>
+                <BaseText class="--m0" tag="p" type="text-14-400"> 
                     {{item.email}}
-                </BaseTypography>
+                </BaseText>
             </div>
 
             <div class="info__subject --mb" v-if="item.email">
-                <BaseTypography class="--m0 " tag="p" type="text-14-600" mode="jilfond-typography">
+                <BaseText class="--m0 " tag="p" type="text-14-600">
                     phone:
-                </BaseTypography>
-                <BaseTypography class="--m0" tag="p" type="text-14-400" mode="jilfond-typography">
+                </BaseText>
+                <BaseText class="--m0" tag="p" type="text-14-400">
                     {{item.phone}}
-                </BaseTypography>
+                </BaseText>
             </div>
             
-            <BaseTypography v-if="item.about" class="--mb" tag="h5" type="title-16" mode="jilfond-typography">
+            <BaseText v-if="item.about" class="--mb" tag="h5" type="title-16">
                 О себе
-            </BaseTypography>
-            <BaseTypography v-if="item.about" class="--m0" tag="p" type="text-14-400" mode="jilfond-typography">
+            </BaseText>
+            <BaseText v-if="item.about" class="--m0" tag="p" type="text-14-400">
                 {{item.about}}
-            </BaseTypography>
+            </BaseText>
         </div>
     </div>
 </template>

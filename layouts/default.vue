@@ -15,7 +15,8 @@
 }
 
 .container {
-    max-width: 1266px; 
+    max-width: calc(1200px + 106px); // todo calc(+106) временное решение удалить 
     width: 100%;
+    padding: 0 20px;
 }
 </style>

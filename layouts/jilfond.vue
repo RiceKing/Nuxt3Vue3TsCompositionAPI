@@ -16,8 +16,10 @@
 }
 
 .container {
-    max-width: 1266px; 
+    max-width: 1306px; 
     width: 100%;
+    padding-left: 20px;
+    padding-right: 20px;
 
     &.--main {
         flex: 1;

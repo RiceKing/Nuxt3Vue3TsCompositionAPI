@@ -6,24 +6,23 @@
         <div class="block">
             <h2>- Типографика -</h2>
             <p>mode: jilfond-typography</p>
-            <BaseTypography class="--mb" tag="h5" type="title-16" mode="jilfond-typography">
+            <BaseText class="--mb" tag="h5" type="title-16" mode="jilfond-typography">
                 Заголовок
-            </BaseTypography>
-            <BaseTypography tag="p" type="text-14-400" mode="jilfond-typography">
+            </BaseText>
+            <BaseText tag="p" type="text-14-400" >
                 Обычный текст
-            </BaseTypography>
-            <BaseTypography tag="p" type="text-14-600" mode="jilfond-typography">
+            </BaseText>
+            <BaseText tag="p" type="text-14-600" >
                 Жирный текст
-            </BaseTypography>
+            </BaseText>
         </div>
 
         <div class="block">
             <h2>- Forms -</h2>
-            <p>form-input</p>
+            <p>form-input: {{ testValueInput }}</p>
             <BaseFormInput class="--mb" type="string" v-model="testValueInput" />
-            <BaseTypography tag="h5" type="title-16" mode="jilfond-typography">
-                {{testValueInput}}
-            </BaseTypography>
+            <p>form-input: error</p>
+            <BaseFormInput class="--mb" type="string" v-model="testValueInput" :error="true" />
         </div>
 
         <div class="block">
@@ -37,7 +36,6 @@
                     <BaseImage src="" />
                 </div>
             </div>
-           
         </div>
     </div>
 </template>

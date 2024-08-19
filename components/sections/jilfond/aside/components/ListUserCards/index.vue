@@ -1,15 +1,15 @@
 <template>
     <div class="list-user-cards">
-        <BaseTypography class="--mb" tag="h5" type="title-16" mode="jilfond-typography">
+        <BaseText class="--mb" tag="h5" type="title-16" mode="jilfond-typography">
             {{title}}
-        </BaseTypography>
+        </BaseText>
 
         <div class="list-wrap" v-if="list.length">
             <CardUser :class="{'--active': item.id === isActiveId}" @onClick="selectCard" :item="item" v-for="item in list" :key="item.id" />
         </div>
-        <BaseTypography v-else tag="p" type="text-14-400" mode="jilfond-typography">
+        <BaseText v-else tag="p" type="text-14-400" mode="jilfond-typography">
             {{listEmptyMessage}}
-        </BaseTypography>
+        </BaseText>
     </div>
 </template>
 

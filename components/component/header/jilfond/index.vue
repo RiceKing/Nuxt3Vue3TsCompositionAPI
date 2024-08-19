@@ -11,6 +11,6 @@
     display: flex;
     justify-content: space-between;
     gap: 30px;
-    padding: 50px 0 45px;
+    padding: 50px 20px 45px;
 }
 </style>

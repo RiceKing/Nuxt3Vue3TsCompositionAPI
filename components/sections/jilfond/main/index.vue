@@ -1,9 +1,9 @@
 <template>
     <div class="jilfond-main" :class="{'--empty': !item}">
         <CardUserBig v-if="item" :item="item" />
-        <BaseTypography v-else tag="p" type="text-14-400" mode="jilfond-typography">
+        <BaseText v-else tag="p" type="text-14-400" mode="jilfond-typography">
             {{ emptyMessage }}
-        </BaseTypography>
+        </BaseText>
     </div>
 </template>
 
