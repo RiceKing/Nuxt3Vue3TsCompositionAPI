@@ -1,6 +1,7 @@
 // todo: Прочитай хоть что-то про composables:)
 
 import { debouncedStateValue } from "@/composables/utils/useDebounce"
+import { updateQueryParams } from "@/composables/utils/useUpdateRouter"
 
 const searchValue = ref<string>('')
 const isLoading = ref<boolean>(false)
@@ -21,17 +22,11 @@ export const handleInput = (event: Event) => {
     }
 }
 
-// todo переписать updateQuery в утилиты, сделать универсальной
-export const updateQuery = (ids: Array<number>, usersName: Array<string>) => {
-    const router = useRouter();   
-    router.push({ query: { id: ids, name: usersName} });
-}
-
 export const extractIdsAndNames = (newValue: string) => {
     // todo каша
     const splitValues = newValue.split(',')
     const ids = splitValues.map((val) => Number(val.trim())).filter((val) => isNumber(val) && val !== 0)
     const usersName = splitValues.filter((val) => !isNumber(Number(val.trim())))
 
-    updateQuery(ids, usersName)
+    updateQueryParams({id: ids, name: usersName})
 }

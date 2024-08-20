@@ -9,10 +9,15 @@
 </template>
 
 <script lang="ts" setup>
+
+type Tag = 'p' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'span'
+type Type = 'title-16' | 'text-14-400' | 'text-14-600'
+type Mode = 'typography' | 'jilfond-typography'  
+
 interface Props {
-    tag?: string,
-    type?: string,
-    mode?: string,
+    tag?: Tag,
+    type?: Type,
+    mode?: Mode,
 }
 
 defineOptions({
@@ -22,7 +27,5 @@ defineOptions({
 
 const props = withDefaults(defineProps<Props>(), {
     tag: 'p',
-    type: 'p',
-    mode: ''
 })
 </script>

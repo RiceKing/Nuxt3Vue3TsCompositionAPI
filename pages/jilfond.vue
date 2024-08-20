@@ -9,6 +9,7 @@
 </template>
 
 <script lang="ts" setup>
+// todo иногда isLoading работает не правильно, поправить. 
 import Aside from "@/components/sections/jilfond/aside/index.vue";
 import MainBlock from "@/components/sections/jilfond/main/index.vue";
 

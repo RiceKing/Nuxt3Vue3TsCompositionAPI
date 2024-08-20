@@ -15,16 +15,11 @@ const props = defineProps({
     title: {default: 'Поиск сотрудников', type: String}
 })
 
-const { searchValue, isLoading } = refsList();
+const { searchValue } = refsList();
 const usersList = inject("usersList") as Ref<Array<User>>;
-isLoading.value = inject("isLoading") as boolean;
+
 
 const printUserList = computed((): string => usersList.value.map((item: User) => item.id).join(", ") || '');
-
-onMounted(() => {
-    // todo убрать из компонента?
-    isLoading.value = false 
-})
 
 watch(searchValue, (newValue) => extractIdsAndNames(newValue))
 
