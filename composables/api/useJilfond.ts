@@ -4,20 +4,19 @@ import { debouncedStateValue } from "@/composables/utils/useDebounce"
 import { updateQueryParams } from "@/composables/utils/useUpdateRouter"
 
 const searchValue = ref<string>('')
-const isLoading = ref<boolean>(false)
 
 export const refsList = () => {
     return {
-        searchValue,
-        isLoading
+        searchValue
     }
 }
 
 export const handleInput = (event: Event) => {
     const target = event.target as HTMLInputElement;
-
+    const loadingStore = useLoadingStore()
+    
     if(target.value) {
-        isLoading.value = true
+        loadingStore.startLoading()
         debouncedStateValue(searchValue, target.value)
     }
 }

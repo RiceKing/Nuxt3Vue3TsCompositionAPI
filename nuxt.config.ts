@@ -16,7 +16,7 @@ export default defineNuxtConfig({
   },
   
   modules: ['@nuxtjs/device', "@pinia/nuxt"],
-
+  
   ssr: true,
   devtools: { enabled: true },
 
@@ -34,6 +34,10 @@ export default defineNuxtConfig({
     public: {
       API_BASE: 'https://jsonplaceholder.typicode.com'
     },
+  },
+
+  pinia: {
+    storesDirs: ['./stores/**', './custom-folder/stores/**'],
   },
 
   compatibilityDate: '2024-04-03',
