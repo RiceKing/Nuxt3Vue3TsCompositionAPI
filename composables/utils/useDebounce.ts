@@ -2,7 +2,6 @@ import { debounce } from "@/utils/debounce"
 
 const debounceDelay = ref<number>(300)
 
-// todo подумать как ещё можно сделать
 const debounced = debounce((stateValue: Ref<any>, newValue: string) => {
     stateValue.value = newValue;
 }, debounceDelay.value);
