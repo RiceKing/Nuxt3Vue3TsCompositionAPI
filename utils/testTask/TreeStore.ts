@@ -101,10 +101,6 @@ export class TreeStore implements TypeTreeStore {
                 break; 
             }
         }
-
-        if (currentItem) {
-            parents.push(currentItem);
-        }
     
         return parents;
     }
