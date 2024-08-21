@@ -9,6 +9,9 @@
                 <NuxtLink :to="'/jilfond'">Тестовое задание для jilfond</NuxtLink>
             </li>
             <li class="--mb">
+                <NuxtLink :to="'/tree'">Тестовое задание TreeStore</NuxtLink>
+            </li>
+            <li class="--mb">
                 <NuxtLink :to="'/ui'">UI</NuxtLink>
             </li>
         </ul>
